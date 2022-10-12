@@ -6,11 +6,11 @@
    <table class="table">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col">No</th>
                 <th scope="col">First</th>
-                <th scope="col">Last</th>
+                <th scope="col">Eamil</th>
                 <th scope="col">Handle</th>
-                <th>Operation</th>
+                <th scope="col">Operation</th>
             </tr>
         </thead>
         <tbody>
@@ -18,15 +18,16 @@
             
                 @foreach($staffLists as $staff)
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"> 1 </th>
                     <td>{{ $staff->name }}</td>
                     <td>{{ $staff->email }}</td>
                     <td>{{ $staff->address }}</td>
                     <td>{{ $staff->phone }}</td>
                     <td>{{ $staff->age }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary editStaff" data-bs-toggle="modal" value="{{ $staff->id }}"  data-bs-target="#EditStaffModal">Edit</button>
-                        <button>Delete</button>
+                        <button class="btn btn-primary"><a href="{{ route('staff.show', $staff->id) }}">View</a></button>
+                        <button class="btn btn-primary editStaff" data-bs-toggle="modal" value="{{ $staff->id }}"  data-bs-target="#EditStaffModal">Edit</button>
+                        <button class="btn btn-danger deleteStaff" value="{{ $staff->id }}">Delete</button>
                     </td>
                 </tr>
                 @endforeach

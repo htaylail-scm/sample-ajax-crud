@@ -22,5 +22,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('get-staffs', [StaffController::class, 'getStaff']);
-Route::resource('staff', StaffController::class);
+Route::resource('/staff', StaffController::class);

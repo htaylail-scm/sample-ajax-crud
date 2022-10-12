@@ -13,7 +13,7 @@ class CreateStaffRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,19 +24,13 @@ class CreateStaffRequest extends FormRequest
     public function rules()
     {
         \Log::info("rules");
-        \Log::ifo(request());
+        \Log::info(request());
         return [
             'name'=> 'required',
             'email'=>'required',
             'address'=> 'required',
-            'phone'=> 'required',
-          
-            // 'name'=> 'required|max:191|min:2', 
-            // 'email'=>'required|email|unique:users|max:50|regex:/\A[^@\s]+@([^@.\s]+\.)+[^@.\s]+\z/',
-            // 'password' => 'required|regex:/^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%]).*$/|max:15|confirmed',
-            // 'position'=>'required|max:191|min:4',
-            // 'role_id'=> 'required',
-            // 'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:15',
+            'phone'=> 'required',         
+           
         ];
     }
 

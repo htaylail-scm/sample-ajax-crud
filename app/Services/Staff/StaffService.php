@@ -4,36 +4,37 @@ namespace App\Services\Staff;
 
 use App\Models\Staff;
 use Illuminate\Support\Facades\DB;
+use App\Contracts\Dao\Staff\StaffDaoInterface;
 use App\Contracts\Services\Staff\StaffServiceInterface;
 
 class StaffService implements StaffServiceInterface
 {
+    private $staffDao;
+
+    /**
+     * Constructor
+     */
+    public function __construct(StaffDaoInterface $staffDao)
+    {
+        $this->staffDao = $staffDao;
+    }
     public  function staffList(){
-        $staffList = Staff::all();
-        return $staffList;
+        return $this->staffDao->staffList();
     }
 
     public  function storeStaff($request){
-        DB::transaction(function () use ($request) {
-            $staff = Staff::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'address' => $request->address,
-                'phone' => $request->phone,                
-            ]);
-            return $staff;
-        });
+        return $this->staffDao->storeStaff($request);
     }
 
-    public  function editStaff(){
-
+    public  function editStaff($id){
+        return $this->staffDao->editStaff($id);
     }
 
-    public  function updateStaff(){
-
+    public  function updateStaff($request, $id){
+        return $this->staffDao->updateStaff($request, $id);
     }
-    
-    public  function deleteStaff(){
 
+    public  function deleteStaff($id){
+        return $this->staffDao->deleteStaff($id);
     }
 }

@@ -15,13 +15,13 @@ class CreateStaffTable extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();           
-            $table->string('name',100);           
-            $table->string('email',100);           
-            $table->string('address',100);            
+            $table->string('name',100);
+            $table->string('email',100);
+            $table->string('address',100);
             $table->string('phone',15);
             $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_datetime')->useCurrent();
-            $table->dateTime('deleted_datetime')->nullable();
+            $table->dateTime('updated_at')->useCurrent();
+            $table->dateTime('deleted_at')->nullable();
         });
     }
 

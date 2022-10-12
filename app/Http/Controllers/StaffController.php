@@ -50,7 +50,7 @@ class StaffController extends Controller
             $this->staffService->storeStaff($request);
             return response()->json([
                 'status'=>200,
-                'message'=>__('success')
+                'message'=>'success'
             ]);
         }
     }
@@ -63,7 +63,8 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        //
+        $staff = $this->staffService->editStaff($id);
+        return view('staff.show')->with('staff', $staff);
     }
 
     /**
@@ -74,9 +75,7 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
-        // $user = $this->userService->editUser($id);
-        $staff = Staff::find($id);
-        \Log::info($staff);
+        $staff = $this->staffService->editStaff($id);  
         if($staff)
         {
             return response()->json([
@@ -95,7 +94,12 @@ class StaffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $staff = $this->staffService->updateStaff($request, $id);
+        return response()->json([
+            'status'=>200,
+            'message'=>'success',
+            'data' => $staff,
+        ]);
     }
 
     /**
@@ -106,6 +110,11 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \Log::info("delete controller");
+        \Log::info($id);
+        $this->staffService->deleteStaff($id);     
+        return [
+            'text' => "Success delete"
+        ];
     }
 }

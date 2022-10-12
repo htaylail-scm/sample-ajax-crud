@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body m-3">
                 <ul id="save_msgList"></ul>
+                <input type="hidden" id="staff_id" />
                 <div class="row mb-3">
                     <div class="col-md-3">
                         <label for="" class="text-end">Name </label>
@@ -44,9 +45,8 @@
                 </div>
 
             </div>
-            <div class="modal-footer" style="justify-content: space-evenly">
-                <button type="button" value="{{ $staff->id }}" class="btn btn-primary updateStaff">Update</button>
-                <button type="button" class="btn btn-secondary resetEditBtn">Reset</button>
+            <div class="modal-footer" style="justify-content: center">
+                <button type="button" value="{{ $staff->id }}" class="btn btn-primary updateStaff">Update</button>                
             </div>
         </div>
     </div>
