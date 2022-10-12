@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Dao\Staff\StaffDaoInterface', 'App\Dao\Staff\StaffDao');
 
         //Staff Business logic registration
-        $this->app->bind('App\Contracts\Services\User\UserServiceInterface','App\Services\User\UserService');
+        $this->app->bind('App\Contracts\Services\Staff\StaffServiceInterface','App\Services\Staff\StaffService');
     }
 
     /**
