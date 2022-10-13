@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Validation\Validator;
 use App\Http\Requests\CreateStaffRequest;
+use App\Http\Requests\UpdateStaffRequest;
 use App\Contracts\Services\Staff\StaffServiceInterface;
-use Illuminate\Http\Request;
-use App\Models\Staff;
 
 class StaffController extends Controller
 {
@@ -25,9 +23,8 @@ class StaffController extends Controller
     {
         $staffLists = $this->staffService->staffList();
         return view('staff.index')->with('staffLists', $staffLists)
-        ->with('no');
-       
-    }    
+            ->with('no');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,22 +34,11 @@ class StaffController extends Controller
      */
     public function store(CreateStaffRequest $request)
     {
-        \Log::info("controller validatior");
-        \Log::info($request);
-        $validator = Validator($request->all(), $request->rules());
-        
-        if ($validator->fails()) {
-            return response()->json([
-                'status'=>403,
-                'errors' => $validator->messages,
-            ]);
-        } else {
-            $this->staffService->storeStaff($request);
-            return response()->json([
-                'status'=>200,
-                'message'=>'success'
-            ]);
-        }
+        $this->staffService->storeStaff($request);
+        return response()->json([
+            'status' => 200,
+            'message' => "Staff Data Update Successfully"
+        ]);
     }
 
     /**
@@ -64,6 +50,9 @@ class StaffController extends Controller
     public function show($id)
     {
         $staff = $this->staffService->editStaff($id);
+        if (!$staff) {
+            return abort(404);
+        }
         return view('staff.show')->with('staff', $staff);
     }
 
@@ -75,14 +64,14 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
-        $staff = $this->staffService->editStaff($id);  
-        if($staff)
-        {
-            return response()->json([
-                'status'=>200,
-                'staff'=> $staff,
-            ]);
+        $staff = $this->staffService->editStaff($id);
+        if (!$staff) {
+            return abort(404);
         }
+        return response()->json([
+            'status' => 200,
+            'staff' => $staff,
+        ]);
     }
 
     /**
@@ -92,13 +81,13 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateStaffRequest $request, $id)
     {
         $staff = $this->staffService->updateStaff($request, $id);
         return response()->json([
-            'status'=>200,
-            'message'=>'success',
-            'data' => $staff,
+            'status' => 200,
+            'staff' => $staff,
+            'message' => "Staff Data Update Successfully"
         ]);
     }
 
@@ -110,11 +99,10 @@ class StaffController extends Controller
      */
     public function destroy($id)
     {
-        \Log::info("delete controller");
-        \Log::info($id);
-        $this->staffService->deleteStaff($id);     
-        return [
-            'text' => "Success delete"
-        ];
+        $this->staffService->deleteStaff($id);
+        return response()->json([
+            'status' => 200,
+            'message' => "Staff Delete Successfully"
+        ]);
     }
 }

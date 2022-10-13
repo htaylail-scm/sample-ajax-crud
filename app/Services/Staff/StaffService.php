@@ -2,8 +2,6 @@
 
 namespace App\Services\Staff;
 
-use App\Models\Staff;
-use Illuminate\Support\Facades\DB;
 use App\Contracts\Dao\Staff\StaffDaoInterface;
 use App\Contracts\Services\Staff\StaffServiceInterface;
 
@@ -18,23 +16,53 @@ class StaffService implements StaffServiceInterface
     {
         $this->staffDao = $staffDao;
     }
-    public  function staffList(){
+
+    /**
+     * Get staffList
+     * @return String
+     */
+    public  function staffList()
+    {
         return $this->staffDao->staffList();
     }
 
-    public  function storeStaff($request){
+    /**
+     * Register staff
+     * @param Object $request 
+     * @return int id
+     */
+    public  function storeStaff($request)
+    {
         return $this->staffDao->storeStaff($request);
     }
 
-    public  function editStaff($id){
+    /**
+     * Eidt staff
+     * @param int $id
+     * @return Object
+     */
+    public  function editStaff($id)
+    {
         return $this->staffDao->editStaff($id);
     }
 
-    public  function updateStaff($request, $id){
+    /**
+     * Update staff
+     * @param int staff $id
+     * @return Object $staff
+     */
+    public  function updateStaff($request, $id)
+    {
         return $this->staffDao->updateStaff($request, $id);
     }
 
-    public  function deleteStaff($id){
+    /**
+     * Delete staff
+     * @param int staff $id
+     * @return  Object $staff
+     */
+    public  function deleteStaff($id)
+    {
         return $this->staffDao->deleteStaff($id);
     }
 }

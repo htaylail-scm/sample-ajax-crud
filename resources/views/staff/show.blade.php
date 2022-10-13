@@ -9,7 +9,7 @@
             <p class="card-text">{{ $staff->email }}</p>
             <p class="card-text">{{ $staff->address }}</p>
             <p class="card-text">{{ $staff->phone }}</p>  
-            <button class="btn btn-primary text-white"><a href="{{ route('staff.index') }}">Back</a></button>
+            <button class="btn btn-primary"><a href="{{ route('staff.index') }}">Back</a></button>
         </div>
     </div>   
 </div>
