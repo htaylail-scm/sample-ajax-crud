@@ -17,9 +17,9 @@
             </thead>
             <tbody>
                 @isset($staffLists)
-                @foreach($staffLists as $staff)
+                @foreach($staffLists as $key => $staff )
                 <tr>
-                    <th scope="row"> {{ ++$no }} </th>
+                    <th scope="row"> {{ ++$key }} </th>
                     <td>{{ $staff->name }}</td>
                     <td>{{ $staff->email }}</td>
                     <td>{{ $staff->address }}</td>

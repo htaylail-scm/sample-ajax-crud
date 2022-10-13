@@ -22,8 +22,8 @@ class StaffController extends Controller
     public function index()
     {
         $staffLists = $this->staffService->staffList();
-        return view('staff.index')->with('staffLists', $staffLists)
-            ->with('no');
+        return view('staff.index')->with('staffLists', $staffLists);
+           
     }
 
     /**
